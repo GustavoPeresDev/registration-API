@@ -1,35 +1,46 @@
 package controller;
 
+import model.EmployeeModel;
+import model.UserModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import service.EmployeeService;
+import service.UserService;
 
-@RequestMapping("/enterprise")
+import java.util.List;
+
+@RequestMapping("/employee")
 @Controller
 public class EmployeeController {
 
-@PostMapping("/createEmployee")
-public String registerEmployee() {
-    return "Employee registration";
+    @Autowired
+    private EmployeeService employeeService;
+
+
+@PostMapping("/createemployee")
+public EmployeeModel createEmployee(@RequestBody EmployeeModel employeeModel) {
+    return employeeService.createEmployee(employeeModel);
 }
 
-@GetMapping("/listEmployee")
-public String listEmployee() {
-    return "list Employee";
+@GetMapping("/listemployee")
+public List<EmployeeModel> listEmployee(){
+    return employeeService.listemployee();
 }
 
-@GetMapping("/searchEmployee/{id}")
-public String searchEmployeeById(@PathVariable long id) {
-    return "search Employee by id";
+@GetMapping("/searchemployee/{id}")
+public EmployeeModel searchEmployeeById(@PathVariable Long id) {
+    return employeeService.searchEmployeeById(id);
 }
 
-@PutMapping("/changeEmployee/{id}")
+@PutMapping("/changeemployee/{id}")
 public String ChangeEmployeeByID(){
     return "Change Employee by ID";
 }
 
-@DeleteMapping("/deleteEmployee/{id}")
-public String deleteEmployeeByID(@PathVariable long id){
-    return "Delete Employee by ID";
+@DeleteMapping("/deleteemployee/{id}")
+public void deleteEmployeeById(@PathVariable Long id) {
+    employeeService.deleteEmployeeByID(id);
 }
 
 }

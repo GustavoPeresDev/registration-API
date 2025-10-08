@@ -1,35 +1,45 @@
 package controller;
 
+import model.ProductModel;
+import model.UserModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import service.ProductService;
+import service.UserService;
 
-@RequestMapping("/enterprise")
+import java.util.List;
+
+@RequestMapping("/product")
 @Controller
 public class ProductController {
 
-@PostMapping("/createProduct")
-public String registerProduct() {
-    return "product registration";
+    @Autowired
+    private ProductService productService;
+
+@PostMapping("/createproduct")
+public ProductModel createProduct(@RequestBody ProductModel productModel) {
+    return productService.createProduct(productModel);
 }
 
-@GetMapping("/listProduct")
-public String listProduct() {
-    return "list Product";
+@GetMapping("/listproduct")
+public List<ProductModel> listProduct() {
+    return productService.listProduct();
 }
 
-@GetMapping("/searchProduct/{id}")
-public String searchProductById(@PathVariable long id) {
-    return "search Product by id";
+@GetMapping("/searchproduct/{id}")
+public ProductModel searchProductById(@PathVariable Long id) {
+    return productService.searchProductById(id);
 }
 
-@PutMapping("/changeProduct/{id}")
+@PutMapping("/changeproduct/{id}")
 public String ChangeProductByID(){
     return "Change Product by ID";
 }
 
-@DeleteMapping("/deleteProduct/{id}")
-public String deleteProductByID(@PathVariable long id){
-    return "Delete Product by ID";
+@DeleteMapping("/deleteproduct/{id}")
+public void deleteProductById(@PathVariable Long id){
+    productService.deleteProductByID(id);
 }
 
 }

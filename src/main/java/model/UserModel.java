@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Model {
+public class UserModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +17,7 @@ public class Model {
     private Long id;
 
     private String nameFull;
-    private String CPF;
+    private String cpf;
     private int age;
     private LocalDate dateBirth;
 
@@ -33,7 +33,7 @@ public class Model {
 
     private String password;
 
-    private String profile; //  ADMIN, CUSTOMER, EMPLOYEE
+    private String profile;
     private boolean active;
 
     private LocalDate dateRegistration;

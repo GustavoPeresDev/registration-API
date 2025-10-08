@@ -1,35 +1,44 @@
 package controller;
 
+import model.UserModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import service.UserService;
 
-@RequestMapping("/enterprise")
+import java.util.List;
+
+@RequestMapping("/user")
 @Controller
 public class UserController {
 
-@PostMapping("/createUsers")
-public String registerUser(){
-    return "user registration";
+    @Autowired
+    private UserService userService;
+
+@PostMapping("/createusers")
+public UserModel createUsers(@RequestBody UserModel userModel) {
+    return userService.createUsers(userModel);
 }
 
-@GetMapping("/listUsers")
-public String listUsers(){
-    return "list users";
+
+@GetMapping("/listusers")
+public List<UserModel> listUsers(){
+    return userService.listUsers();
 }
 
-@GetMapping("/searchUsers/{id}")
-public String searchUserById(@PathVariable long id){
-    return "search user by id";
+@GetMapping("/searchusers/{id}")
+public UserModel searchUsersById(@PathVariable Long id) {
+    return userService.searchUserById(id);
 }
 
-@PutMapping("/changeUsers/{id}")
-public String ChangeUserByID(){
+@PutMapping("/changeusers/{id}")
+public String changeUserByID(){
     return "Change user by ID";
 }
 
-@DeleteMapping("/deleteUsers/{id}")
-public String deleteUserByID(@PathVariable long id){
-    return "Delete user by ID";
+@DeleteMapping("/deleteusers/{id}")
+public void deleteUsersById(@PathVariable Long id){
+    userService.deleteUserByID(id);
 }
 
 
