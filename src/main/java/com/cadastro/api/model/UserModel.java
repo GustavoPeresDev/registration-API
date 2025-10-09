@@ -40,4 +40,6 @@ public class UserModel {
     private LocalDate lastLogin;
     private LocalDate updateDate;
 
+    public void setId(long id) {
+    }
 }
