@@ -1,4 +1,4 @@
-package model;
+package com.cadastro.api.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,7 +18,7 @@ public class UserModel {
 
     private String nameFull;
     private String cpf;
-    private int age;
+    private Integer age;
     private LocalDate dateBirth;
 
     private String mainEmail;
@@ -34,7 +34,7 @@ public class UserModel {
     private String password;
 
     private String profile;
-    private boolean active;
+    private Boolean active;
 
     private LocalDate dateRegistration;
     private LocalDate lastLogin;
